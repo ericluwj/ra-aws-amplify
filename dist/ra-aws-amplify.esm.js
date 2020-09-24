@@ -406,7 +406,7 @@ var buildQueryFactory = function buildQueryFactory(buildVariablesImpl, getGqlQue
         return r.type.name;
       });
       return function (aorFetchType, resourceName, params) {
-        console.log(aorFetchType, resourceName, params);
+        // console.log(aorFetchType, resourceName, params);
         var resource = introspectionResults.resources.find(function (r) {
           return r.type.name === resourceName;
         });
@@ -506,9 +506,8 @@ var buildAmplifyProvider = function buildAmplifyProvider(_ref) {
     return function (fetchType, resource, params) {
       // Amplify does not support multiple deletions so instead we send multiple DELETE requests
       // This can be optimized using the apollo-link-batch-http
-      var otherParams = _objectWithoutPropertiesLoose(params, ["ids"]);
+      var otherParams = _objectWithoutPropertiesLoose(params, ["ids"]); // console.log(`FETCH TYPE: ${fetchType}`);
 
-      console.log("FETCH TYPE: " + fetchType);
 
       switch (fetchType) {
         case DELETE_MANY:
